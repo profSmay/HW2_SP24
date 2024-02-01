@@ -1,3 +1,4 @@
+from math import sqrt, pi, exp
 def Probability(PDF, args, c, GT=True):
     """
     This is the function to calculate the probability that x is >c or <c depending
@@ -13,7 +14,9 @@ def Probability(PDF, args, c, GT=True):
     :param GT: boolean deciding if we want probability x>c (True) or x<c (False)
     :return: probability value
     """
-    pass
+    mu,sig=args
+    p=Simpson(PDF,(mu,sig, mu-5*sig, 0))
+    return p
 
 def GPDF(args):
     """
@@ -27,7 +30,12 @@ def GPDF(args):
     :param args: (x, mean, standard deviation)  tuple in that order
     :return: value of GPDF at the desired x
     """
-    pass
+    #Step 1: unpack args
+    x, mu, sig=args
+    #step 2: compute GPDF at x
+    fx=(1/(sig*sqrt(2*pi)))*exp(-0.5*((x-mu)/sig)**2)
+    #step 3: return value
+    return fx
 
 def Simpson(fx, args):
     """
@@ -41,7 +49,8 @@ def Simpson(fx, args):
     :param args: a tuple containing (mean, stDev, lhl, rhl)
     :return: the area beneath the function between lhl and rhl
     """
-    pass
+    area = 0.5
+    return area
 
 def main():
     """
@@ -55,3 +64,20 @@ def main():
     5. Return the required probability from Probability and print to screen.
     :return: Nothing to return, just print results to screen.
     """
+    #region testing GPDF
+    fx = GPDF((0,0,1))
+    print("{:0.5f}".format(fx))
+    #edregion
+
+    #region testing Simpson
+    p=Simpson(GPDF,(0,1,-5,0)) #should return 0.5
+    print("p={:0.5f}".format(p))
+    #endregion
+
+    #region testing Probability
+    p1 = Probability(GPDF, (0,1),0,True)
+    print("p1={:0.5f}".format(p1))
+    #endregion
+
+if __name__ == "__main__":
+    main()
