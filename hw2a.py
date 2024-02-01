@@ -39,9 +39,9 @@ def GPDF(args):
 
 def Simpson(fx, args):
     """
-    This executes the Simpson 1/3 rule for numerical integration.  I need
-    to go to the textbook to look up the details.  As I recall:
-    1. divide the range from x=lhl to x=rhl into an even number of parts.
+    This executes the Simpson 1/3 rule for numerical integration (see page 832, Table 19.4).
+    As I recall:
+    1. divide the range from x=lhl to x=rhl into an even number of parts. Perhaps 20?
     2. compute fx at each x value between lhl and rhl
     3. sum the even and odd values of fx as prescribed
     4. return the area beneath the function fx
@@ -49,6 +49,7 @@ def Simpson(fx, args):
     :param args: a tuple containing (mean, stDev, lhl, rhl)
     :return: the area beneath the function between lhl and rhl
     """
+
     area = 0.5
     return area
 
