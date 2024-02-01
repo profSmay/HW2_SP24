@@ -80,5 +80,14 @@ def main():
     print("p1={:0.5f}".format(p1))
     #endregion
 
+    #region testing user input
+    mean = input("Population mean? ")
+    stDev = input("Standard deviation?")
+    c = input("c value?")
+    GT = True if input("Probability greater than c?").lower() in ["y","yes","true"] else "False"
+    print("P(x"+(">" if GT else "<") + c +"|"+mean+", "+stDev +")")
+    pass
+    #endregion
+
 if __name__ == "__main__":
     main()
